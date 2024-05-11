@@ -3,10 +3,13 @@ package dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import context.DBContext;
+import entity.Category;
 import entity.Product;
 
 public class DAO {
@@ -24,12 +27,11 @@ public class DAO {
 			resultSet = prepare.executeQuery();
 			while (resultSet.next()) {
 				list.add(new Product(
-						resultSet.getInt("id"),
-						resultSet.getString("productName"),
-						resultSet.getString("productCategoryPath"),
-						resultSet.getString("img"),
-						resultSet.getDouble("unitPrice"),
-						resultSet.getInt("cid")
+						resultSet.getInt(1),
+						resultSet.getString(2),
+						resultSet.getString(3),
+						resultSet.getString(4),
+						resultSet.getDouble(5)
 						));
 			}
 			
@@ -49,12 +51,11 @@ public class DAO {
 			resultSet = prepare.executeQuery();
 			while (resultSet.next()) {
 				top1.add(new Product(
-						resultSet.getInt("id"),
-						resultSet.getString("productName"),
-						resultSet.getString("productCategoryPath"),
-						resultSet.getString("img"),
-						resultSet.getDouble("unitPrice"),
-						resultSet.getInt("cid")
+						resultSet.getInt(1),
+						resultSet.getString(2),
+						resultSet.getString(3),
+						resultSet.getString(4),
+						resultSet.getDouble(5)
 						));
 			}
 		}catch (Exception e) {
@@ -62,5 +63,84 @@ public class DAO {
 		}
 		
 		return top1;
+	}
+	public List<Category> getCategory() {
+        List<Category> productList = new ArrayList<>();
+
+        try {
+            String sql = "select * from categoryProduct";
+            prepare = connect.prepareStatement(sql);
+            resultSet = prepare.executeQuery();
+
+            while(resultSet.next()) {
+            	productList.add(new Category(
+            			resultSet.getInt(1),
+            			resultSet.getString(2)
+            			));
+            }
+           
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return productList;
+    }
+	public List<Product> getProductByCateID(String id){
+		List<Product> list = new ArrayList<>();
+		String query = "Select * from `product` where cid = ?;";
+		try {
+			connect = new DBContext().getConnection();
+			prepare = connect.prepareStatement(query);
+			prepare.setString(1, id);
+			resultSet = prepare.executeQuery();
+			
+			while(resultSet.next()) {
+				list.add(new Product(
+						resultSet.getInt(1),
+						resultSet.getString(2),
+						resultSet.getString(3),
+						resultSet.getString(4),
+						resultSet.getDouble(5)
+						));
+			}
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		return list;
+	}
+	public Product getProductByID(String id){
+		
+		String query = "Select * from `product` where id = ?;";
+		try {
+			connect = new DBContext().getConnection();
+			prepare = connect.prepareStatement(query);
+			prepare.setString(1, id);
+			resultSet = prepare.executeQuery();
+			
+			while(resultSet.next()) {
+				return new Product(
+						resultSet.getInt(1),
+						resultSet.getString(2),
+						resultSet.getString(3),
+						resultSet.getString(4),
+						resultSet.getDouble(5)
+						);
+			}
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
+		return null;
+		
+	}
+	public static void main(String[] args) {
+		DAO dao = new DAO();
+		List<Product> listX = dao.getAllProduct();
+		List<Category> list = dao.getCategory();
+		List<Product> listP = dao.getProductByCateID("1");
+		
+		for(Product o : listP) {
+			System.out.println(o);
+		}
 	}
 }

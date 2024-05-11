@@ -45,6 +45,7 @@ create table `categoryProduct`(
 insert into `categoryProduct`(id, categoryName) values
 (1,"iPhone 14"),
 (2, "iPhone 15");
+select * from categoryProduct;
 create table `product`(
 	id int(11) primary key auto_increment,
     productName nvarchar(255) not null,
@@ -68,7 +69,7 @@ INSERT INTO `product` (id, productName, productCategoryPath, img, unitPrice, cid
     (13, "iPhone 15Promax 1Tb", "/iPhone/iPhone 15/iPhone 15Promax", "https://example.com/iphone15promax1tb.jpg", 0, 2);
     -- Create the 'customers' table
 -- SELECT * FROM product WHERE productType = 'iPhone 15';
-SELECT * FROM product WHERE cid = 2;
+Select * from `product` where cid =2;
 
 CREATE TABLE orders (
     id INT(11) PRIMARY KEY AUTO_INCREMENT,
@@ -135,4 +136,9 @@ CREATE TABLE ProductImages (
     productId INT(11) NOT NULL,
     imageUrl VARCHAR(255) NOT NULL,
     FOREIGN KEY (productId) REFERENCES `product`(id)
+);
+
+create table ads(
+	id int(11) primary key auto_increment,
+    img nvarchar(255) not null
 );

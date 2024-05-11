@@ -1,5 +1,6 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@include file="header.jsp" %>
+<link rel="stylesheet" href="css_itplus.css">
 <body>
     <div class="content-menu">
         <div class="banner-content">
@@ -23,7 +24,7 @@
 	                <div class="container-promotion">
 	                    <div class="goods-promotion">
 	                        <a href="#">
-	                        <img width="100px" height="150px" src="${o.img }" alt="">
+	                        <img width="100%" height="100%" src="${o.img }" alt="">
 	                        <h5 style="color: red;">${o.unitPrice}</h5>
 	                        <p>${o.productName}</p>
 	                        </a>
@@ -32,21 +33,28 @@
                 </c:forEach>
             </div>
         </div>
+        	<div class="container">
+			 <!--  <div class="row">
+			    <div class="col-md-8">.col-md-8</div>
+			    <div class="col-6 col-md-4">.col-6 .col-md-4</div>
+			  </div> -->
 		        <div class="list-goods">
 		            <div class="funct">
-		            <c:forEach items="${listP}" var="o">
-		                <ul class="orther-list">
-		                    <li><a href="#">${o.productName}</a></li>
-		                </ul></c:forEach>
+		            	<c:forEach items="${ListC}" var="c">
+		            	
+			                <ul class="orther-list">
+			                   <a href="category?id=${c.id}" > <li class="${tag == c.id ? "actives" : ""}">  ${c.categoryName}</li></a>
+			                </ul>
+		                </c:forEach>
 		            </div>
 		            <div class="row">
 						<c:forEach items="${listP}" var="o">
 							<div class="col-lg-2 col-md-3 col-5">
-								<a href="Home?action=productDetails&productId=${o.id}">
-									<div class="card">
-										<img src="${o.img}" class="card-img-top" alt="Product 1">
+								<a href="detail?pid=${o.id}" title="${o.productName}">
+									<div class="card" >
+										<img src="${o.img}" class="card-img-top" alt="${o.productName}" title="${o.productName}">
 										<div class="card-body">
-											<h5 class="card-text">${o.productName}</h5>
+											<h5 class="card-text" >${o.productName}</h5>
 											<p class="text-danger"><b>${o.unitPrice}</b></p>
 											<%-- <p class="card-title">${o.productType}</p> --%>
 											<%-- <a href="Home?action=productDetails&id=${o.id}">Xem chi tiết</a>

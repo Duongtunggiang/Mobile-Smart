@@ -180,24 +180,28 @@
     text-decoration: none;
     color: black;
 }
-
-.row{
-    margin: 20px;
+.card{
+	height: 300px;
+	width: 100%;
+	
+}
+.actives{
+	background-color: #226c22;
+	color: white;
+/* 	margin-left: -30px;
+	font-size: +20px; */
 }
 .list-goods {
-    display:  grid; 
-    grid-template-areas: 
-    "funct funct funct contentt contentt contentt contentt contentt contentt contentt"
-    ; 
-}
-.funct{
-    grid-area: funct;
-    height: 90px;
-    margin: 20px 0 0 0;
+    display: flex;
 }
 .row{
-    grid-area: contentt;
-} 
+	flex-grow: 1;
+}
+.funct{
+
+    width: 200px;
+    /* margin: 20px 0 0 0; */
+}
 
 .orther-list{
     display: block;
@@ -218,6 +222,8 @@
 }
 .promotion{
     overflow: hidden;
+    display: flex;
+    justify-content: center;
 }
 .text-promotion{
     background-color: #3bb03b;
@@ -227,7 +233,8 @@
     color: #ffffff;
 }
 .list-promotion{
-    width: 100%;
+    width: 70%;
+    justify-content: center;
     white-space: nowrap;
     position: relative;
     right: 0;
@@ -240,7 +247,7 @@
 }
 .container-promotion{
     display: inline-block;
-    animation: slidePromotion 15s linear infinite;
+    animation: slidePromotion 13s linear infinite;
 }
 .goods-promotion {
     width: 170px;
@@ -251,10 +258,10 @@
   }
 @keyframes slidePromotion {
     0% {
-      transform: translateX(150%);
+      transform: translateX(350%);
     }
     100% {
-      transform: translateX(-100%);
+      transform: translateX(-60%);
     }
 }
 .footer {

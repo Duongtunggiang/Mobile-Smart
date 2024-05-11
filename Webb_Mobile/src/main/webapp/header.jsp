@@ -22,7 +22,7 @@
                     <a class="nav-link active" href="#">Hỗ trợ <i class="fa fa-life-ring"></i></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="${pageContext.request.contextPath}/card.jsp">Giỏ hàng <i class="fa fa-shopping-cart"></i></a>
+                    <a class="nav-link" href="${pageContext.request.contextPath}/cart.jsp">Giỏ hàng <i class="fa fa-shopping-cart"></i></a>
                 </li>
                 <li class="nav-item">
 				    <c:choose>

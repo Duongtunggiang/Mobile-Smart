@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.util.List;
 
 import dao.DAO;
+import entity.Category;
 import entity.Product;
 
 @WebServlet("/Home")
@@ -86,11 +87,12 @@ public class HomeControll extends HttpServlet {
 		
 		DAO dao = new DAO();
 		List<Product> list = dao.getAllProduct();
-		request.setAttribute("listP", list);
-		
-		DAO top1 = new DAO();
+		List<Category> listC = dao.getCategory();
 		List<Product> top = dao.getTop1();
+		
+		request.setAttribute("listP", list);
 		request.setAttribute("Top1", top);
+		request.setAttribute("ListC", listC);
 		///Lam tiep
 		DAO cate = new DAO();
 //		List<Product> cid = cate.getProductsByCategoryId(0);

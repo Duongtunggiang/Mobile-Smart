@@ -6,15 +6,15 @@ public class Product {
 	private String productCategoryPath;
 	private String img;
 	private double unitPrice;
-	private int cid;
-	public Product(int id, String productName, String productCategoryPath, String img, double unitPrice, int cid) {
+
+	public Product(int id, String productName, String productCategoryPath, String img, double unitPrice) {
 		super();
 		this.id = id;
 		this.productName = productName;
 		this.productCategoryPath = productCategoryPath;
 		this.img = img;
 		this.unitPrice = unitPrice;
-		this.cid = cid;
+	
 	}
 	public int getId() {
 		return id;
@@ -46,11 +46,11 @@ public class Product {
 	public void setUnitPrice(double unitPrice) {
 		this.unitPrice = unitPrice;
 	}
-	public int getCid() {
-		return cid;
-	}
-	public void setCid(int cid) {
-		this.cid = cid;
+
+	@Override
+	public String toString() {
+		return "Product [id=" + id + ", productName=" + productName + ", productCategoryPath=" + productCategoryPath
+				+ ", img=" + img + ", unitPrice=" + unitPrice  + "]";
 	}
 	
 }
